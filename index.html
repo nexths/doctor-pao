@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Pão - Padaria Artesanal</title>
+
+  <meta name="description" content="Padaria artesanal especializada em pães de fermentação natural em Mogi das Cruzes.">
+
+  <meta property="og:title" content="Doctor Pão">
+  <meta property="og:description" content="Pães artesanais produzidos com fermentação natural.">
+  <meta property="og:image" content="/assets/hero.webp">
+  <meta property="og:type" content="website">
+
+  <link rel="preload" as="image" href="/assets/hero.webp">
+  
+  <!-- Font Awesome para os ícones redondos das redes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Playfair para títulos naturais e Montserrat para o corpo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --verde-musgo: #2E4F25;
+      --verde-escuro: #1b3316;
+      --verde-whatsapp: #25D366;
+      --marrom-artesanal: #4a2f1b;
+      --marrom-hover: #5c3d26;
+      --texto-claro: #ffffff;
+      --texto-escuro: #333333;
+      --fonte-titulo: 'Playfair Display', serif;
+      --fonte-corpo: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--fonte-corpo);
+      color: var(--texto-escuro);
+      background-color: #fcfcfc;
+      overflow-x: hidden;
+    }
+
+    /* --- 1. SEÇÃO TOPO / HERO (Com 100dvh e Parallax) --- */
+    .hero-section {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/hero.webp');
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo-doctor-pao {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Menu Hambúrguer Oculto */
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 100;
+    }
+
+    .menu-toggle .bar {
+      width: 30px;
+      height: 3px;
+      background-color: var(--texto-claro);
+      transition: 0.3s;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 280px; height: 100vh;
+      background-color: rgba(27, 51, 22, 0.95);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+      z-index: 90;
+    }
+
+    .nav-menu.open { right: 0; }
+
+    .nav-menu ul { list-style: none; text-align: center; }
+    .nav-menu ul li { margin: 25px 0; }
+    .nav-menu ul li a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-family: var(--fonte-titulo);
+      letter-spacing: 2px;
+    }
+
+    .hero-center-content {
+      text-align: center;
+      color: var(--texto-claro);
+      padding: 20px;
+      border-radius: 8px;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
+    }
+
+    .hero-center-content h1 {
+      font-family: var(--fonte-titulo);
+      font-size: 2.8rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .hero-center-content p {
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-footer-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .btn-main-action {
+      background: none;
+      border: 2px solid var(--texto-claro);
+      color: var(--texto-claro);
+      padding: 18px 25px; 
+      border-radius: 30px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700; 
+      font-size: 0.95rem; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    /* Banner do Tour Virtual Simplificado e Centralizado */
+    .tour-virtual-banner {
+      background-color: var(--verde-musgo);
+      color: var(--texto-claro);
+      padding: 18px 25px; 
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 100%;
+      transition: background-color 0.2s ease;
+    }
+
+    .tour-text p { 
+      font-size: 0.9rem; 
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+
+    /* --- 2. SEÇÃO DIFERENCIAIS CLEAN (3 COLUNAS REDONDAS) --- */
+    .diferenciais-banner {
+      min-height: auto;
+      background: #ffffff !important;
+      color: #333333 !important;
+      padding: 40px 20px 20px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15); 
+    }
+
+    .diferenciais-banner h2 {
+      font-family: var(--fonte-titulo);
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #000000;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .diferenciais-banner p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      max-width: 600px;
+      line-height: 1.6;
+      margin: 0 auto;
+      color: #555555;
+    }
+
+    .diferenciais-grid {
+      display: grid;
+      /* 🔥 MUDANÇA: Atualizado para 3 colunas perfeitas no mobile */
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 12px;
+      padding: 30px 15px 40px 15px;
+      background-color: #fff;
+      position: relative;
+    }
+
+    /* TRACINHO 1: Centralizado e curto após os diferenciais */
+    .diferenciais-grid::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .diferencial-card { text-align: center; }
+    .diferencial-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      /* 🔥 DESIGN: Formato circular estilo Stories com borda artesanal */
+      border-radius: 50%;
+      border: 2px solid var(--marrom-artesanal);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .diferencial-card span {
+      display: block;
+      margin-top: 10px;
+      font-family: var(--fonte-titulo);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #333333;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    /* Seção Nossa História Reorganizada Sem Duplicar Títulos */
+    .historia-banner {
+      background: #ffffff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* --- 3. SEÇÃO REDES SOCIAIS + TRACINHO EMBAIXO --- */
+    .redes-sociais-section {
+      text-align: center;
+      padding: 40px 20px 40px 20px;
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    /* TRACINHO 2: Centralizado e curto antes de "Nossas Especialidades" */
+    .redes-sociais-section::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .redes-sociais-section h2 {
+      font-family: var(--fonte-titulo);
+      font-size: 2rem;
+      font-weight: 500;
+      color: #333333;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .icones-redes-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn-rede-circular {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--marrom-artesanal);
+      color: var(--texto-claro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .btn-rede-circular:active {
+      transform: scale(0.92);
+      background-color: var(--marrom-hover);
+    }
+
+    /* --- 4. GALERIA PREMIUM (Estilo Instagram + Lightbox) --- */
+    .galeria-section-title {
+      text-align: center;
+      padding: 40px 20px 10px 20px;
+      font-family: var(--fonte-titulo);
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: #333333;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background-color: #ffffff;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      padding: 15px;
+    }
+
+    @media (min-width: 900px) {
+      .galeria-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .galeria-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.92);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-conteudo { max-width: 90%; max-height: 80%; border-radius: 4px; }
+    .lightbox-fechar {
+      position: absolute; top: 20px; right: 25px;
+      color: #ffffff; font-size: 45px; font-weight: bold; cursor: pointer;
+    }
+
+    /* --- 5. RODAPÉ OTIMIZADO --- */
+    .site-footer {
+      background-color: var(--verde-escuro);
+      color: var(--texto-claro);
+      padding: 40px 20px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-block h3 {
+      font-family: var(--fonte-titulo);
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .footer-block p { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; }
+    
+    .btn-maps { 
+      display: inline-block; 
+      margin-top: 10px; 
+      color: #fff; 
+      font-size: 0.85rem; 
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+
+    /* --- 6. BOTÃO FLUTUANTE DO WHATSAPP --- */
+    .whatsapp-flutuante {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--verde-whatsapp);
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .whatsapp-flutuante:active {
+      transform: scale(0.9);
+    }
+
+    /* --- 7. RESPONSIVIDADE DESKTOP (RESETS DO MENU) --- */
+    @media (min-width: 900px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        position: relative;
+        top: 0;
+        right: 0; /* Resetado para fixar o menu no topo do computador */
+        width: auto;
+        height: auto;
+        background: none;
+        backdrop-filter: none;
+        display: block;
+      }
+
+      .nav-menu ul {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-menu ul li {
+        margin: 0;
+      }
+
+      .nav-menu ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-family: var(--fonte-corpo);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+  <a href="https://wa.me/5511996061241?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20saber%20mais%20sobre%20os%20pães." 
+     class="whatsapp-flutuante" 
+     target="_blank" 
+     title="Fale Conosco no WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- TOPO / HERO -->
+  <header class="hero-section" id="inicio">
+    <div class="hero-header">
+      <img src="./assets/logo.png" alt="Logo Doctor Pão" class="logo-doctor-pao">
+      <button class="menu-toggle" id="btn-menu" aria-label="Abrir Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <nav class="nav-menu" id="menu-principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="hero-center-content">
+      <h1>Fermentação Natural <br>em Cada Fornada</h1>
+      <p>Pães artesanais produzidos lentamente para entregar sabor, textura e qualidade.</p>
+    </div>
+
+    <div class="hero-footer-buttons">
+      <a href="https://wa.me/5511996061241" target="_blank" class="btn-main-action">Ver Cardápio e Fazer Pedido</a>
+      
+      <!-- Banner do Tour Virtual Simplificado -->
+      <a href="#" class="tour-virtual-banner">
+        <div class="tour-text">
+          <p>EXPLORE NOSSO ESPAÇO EM 360°</p>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- DIFERENCIAIS -->
+  <section class="diferenciais-section" id="diferenciais">
+    <div class="diferenciais-banner">
+      <h2>NOSSOS DIFERENCIAIS</h2>
+      <p>Nossa dedicação se reflete em cada detalhe do processo, priorizando a máxima qualidade e uma experiência única para você.</p>
+    </div>
+    <div class="diferenciais-grid">
+      <div class="diferencial-card">
+        <img src="/assets/card1.webp" alt="Preparo Artesanal" loading="lazy">
+        <span>Preparo Artesanal</span>
+      </div>
+      <div class="diferencial-card">
+        <img src="/assets/card2.webp" alt="Matéria-Prima" loading="lazy">
+        <span>Matéria-Prima 100% Orgânica</span>
+      </div>
+      <!-- 👇 TERCEIRO CARD ATIVADO NO LAYOUT REDONDO 👇 -->
+      <div class="diferencial-card">
+        <img src="/assets/card3.webp" alt="Fornada Diária" loading="lazy">
+        <span>Fornada Diária</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSSA HISTÓRIA (Acabamento limpo) -->
+  <section class="historia-banner">
+    <div class="diferenciais-banner" style="border-bottom: none; padding-top: 10px;">
+      <h2>NOSSA HISTÓRIA</h2>
+      <p>
+        Na Doctor Pão acreditamos que o melhor pão é aquele que respeita o tempo.
+        Nossa fermentação natural e produção artesanal valorizam sabor, textura e qualidade em cada fornada.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEÇÃO REDES SOCIAIS -->
+  <section class="redes-sociais-section">
+    <h2>Acompanhe Nossas Novidades</h2>
+    <div class="icones-redes-container">
+      <a href="https://www.instagram.com/doctorpao_" target="_blank" class="btn-rede-circular" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/p/Doctor-P%C3%A3o-100057123653024/" target="_blank" class="btn-rede-circular" title="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="btn-rede-circular" title="Google Maps">
+        <i class="fa-solid fa-location-dot"></i>
+      </a>
+      <a href="mailto:doctorpao.contato@gmail.com" class="btn-rede-circular" title="E-mail">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- GALERIA DE ESPECIALIDADES -->
+  <h2 class="galeria-section-title">Nossas Especialidades</h2>
+  <section class="galeria-grid" id="especialidades">
+    <img src="/assets/pao1.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    <img src="/assets/pao2.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    <img src="/assets/pao3.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    <img src="/assets/pao4.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    <img src="/assets/pao5.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    <img src="/assets/pao6.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="lightbox-fechar">×</span>
+    <img class="lightbox-conteudo" id="img-ampliada" alt="Imagem Ampliada">
+  </div>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer" id="contato">
+    <div class="footer-container">
+      <div class="footer-block">
+        <h3>ONDE ESTAMOS</h3>
+        <p>Av. Pedro Romero, 111 - loja 01</p>
+        <p>Vila Suissa, Mogi das Cruzes - SP, 08810-370</p>
+        <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="btn-maps">Como Chegar →</a>
+      </div>
+      <div class="footer-block">
+        <h3>CONTATO</h3>
+        <p>WhatsApp: 11 99606-1241</p>
+        <p>E-mail: doctorpao.contato@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Doctor Pão. Todos os direitos reservados. CNPJ: 44.943.342/0001-10</p>
+    </div>
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT -->
+  <script>
+    // Controle do Menu Hambúrguer
+    const btnMenu = document.getElementById('btn-menu');
+    const menuPrincipal = document.getElementById('menu-principal');
+
+    btnMenu.addEventListener('click', () => {
+      menuPrincipal.classList.toggle('open');
+    });
+
+    const linksMenu = document.querySelectorAll('.nav-menu a');
+    linksMenu.forEach(link => {
+      link.addEventListener('click', () => menuPrincipal.classList.remove('open'));
+    });
+
+    // Controle da Galeria Lightbox
+    const imagensGaleria = document.querySelectorAll('.galeria-img');
+    const lightbox = document.getElementById('lightbox');
+    const imgAmpliada = document.getElementById('img-ampliada');
+    const btnFechar = document.querySelector('.lightbox-fechar');
+
+    imagensGaleria.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        imgAmpliada.src = img.src;
+      });
+    });
+
+    btnFechar.addEventListener('click', () => lightbox.style.display = 'none');
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+
+    // Fechar menu ao clicar fora dele
+    document.addEventListener('click', (e) => {
+      if (!menuPrincipal.contains(e.target) && !btnMenu.contains(e.target)) {
+        menuPrincipal.classList.remove('open');
+      }
+    });
+  </script>
+
+  <!-- DADOS ESTRUTURADOS PARA SEO LOCAL -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Doctor Pão",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Pedro Romero, 111 - loja 01",
+      "addressLocality": "Mogi das Cruzes",
+      "addressRegion": "SP",
+      "postalCode": "08810-370",
+      "addressCountry": "BR"
+    },
+    "telephone": "+5511996061241"
+  }
+  </script>
+
+</body>
+</html>
