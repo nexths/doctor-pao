@@ -33,7 +33,7 @@
     .hero-section {
       position: relative;
       /* 🔥 CORRIGIDO: Voltamos para dvh para o botão do tour NUNCA se esconder no celular */
-      min-height: 100dvh; 
+      min-height: 100svh; 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
