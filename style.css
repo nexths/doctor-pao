@@ -29,24 +29,23 @@
     }
 
     /* --- 1. SEÇÃO TOPO / HERO (Ajustada para celular não dar trancos) --- */
+/* --- 1. SEÇÃO TOPO / HERO (Efeito Fluido e Sem Esconder Botões) --- */
     .hero-section {
       position: relative;
-      /* 🔥 CORRIGIDO: Mudamos para 100vh fixo para matar o tranco das barras do navegador */
-      min-height: 100vh; 
+      /* 🔥 CORRIGIDO: Voltamos para dvh para o botão do tour NUNCA se esconder no celular */
+      min-height: 100dvh; 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 20px;
       background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/hero.webp');
       
-      /* 🔥 CORRIGIDO: Deixamos como scroll por padrão no celular para a rolagem ficar ultra lisa */
-      background-attachment: scroll; 
-      
-      background-position: center;
+      /* 🔥 O SEGREDO: Faz a imagem deslizar suave por trás no celular sem dar trancos */
+      background-attachment: fixed; 
+      background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
     }
-
     .hero-header {
       display: flex;
       justify-content: space-between;
