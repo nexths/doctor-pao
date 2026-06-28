@@ -1,5 +1,4 @@
-
-    :root {
+:root {
       --verde-musgo: #2E4F25;
       --verde-escuro: #1b3316;
       --verde-whatsapp: #25D366;
@@ -28,37 +27,22 @@
       overflow-x: hidden;
     }
 
-    /* --- 1. SEÇÃO TOPO / HERO (Ajustada para celular não dar trancos) --- */
-/* --- 1. SEÇÃO TOPO / HERO (Efeito Fluido e Sem Esconder Botões) --- */
-/* --- 1. SEÇÃO TOPO / HERO (CÓDIGO FINAL SEM TRAVAMENTO E LISO) --- */
-.hero-section {
-  position: relative;
-  min-height: 100dvh; /* dvh impede o layout de pular no celular */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-  overflow: hidden;
-}
+    /* --- 1. SEÇÃO TOPO / HERO --- */
+    .hero-section {
+      position: relative;
+      min-height: 100vh; 
 
-/* O SEGREDO: Uma caixa que cria o efeito "janela" para a foto */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/hero.webp');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-  
-  /* 🔥 ESSE É O MILAGRE: Isola o fundo fixo APENAS dentro dessa div */
-  clip-path: inset(0 0 0 0);
-  position: fixed; 
-}
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/hero.webp');
+      
+      background-attachment: fixed; 
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     .hero-header {
       display: flex;
       justify-content: space-between;
@@ -442,7 +426,6 @@
 
     /* --- 7. RESPONSIVIDADE DESKTOP --- */
     @media (min-width: 900px) {
-      /* 🔥 ADICIONADO: Ativa o efeito Parallax fixo APENAS no computador */
       .hero-section {
         background-attachment: fixed;
       }
@@ -487,10 +470,10 @@
 
     /* --- ASSINATURA DO DESENVOLVEDOR NO RODAPÉ --- */
     .assinatura-desenvolvedor {
-      margin-top: 12px; /* Dá um espacinho em relação ao CNPJ */
+      margin-top: 12px;
       font-size: 0.75rem;
       letter-spacing: 1px;
-      opacity: 0.7; /* Deixa o texto sutil */
+      opacity: 0.7;
       transition: opacity 0.2s ease;
     }
 
@@ -498,16 +481,15 @@
       color: var(--texto-claro);
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.4); /* Linha tracejada elegante embaixo da sua marca */
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    /* Efeito quando o cliente passa o mouse ou clica */
     .assinatura-desenvolvedor:hover {
       opacity: 1;
     }
 
     .assinatura-desenvolvedor a:hover {
-      color: var(--verde-whatsapp); /* Destaca seu link na cor do sucesso */
+      color: var(--verde-whatsapp);
       border-bottom-color: var(--verde-whatsapp);
     }
