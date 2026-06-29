@@ -154,28 +154,29 @@ body {
   z-index: 5;
 }
 
-/* Efeito de hover opcional para o botão no fundo branco */
+/* Efeito Hover: Quando passa o mouse, ele ganha a cor verde-musgo e muda a borda */
 .btn-main-action:hover {
-  background-color: var(--marrom-artesanal);
+  background-color: var(--verde-musgo); /* Agora fica verde igual ao outro botão */
+  border-color: var(--verde-musgo);     /* Ajusta a borda para acompanhar o verde */
   color: #ffffff;
 }
 
-/* Ajustando o Botão principal para aparecer no fundo branco */
+/* Ajustando o Botão principal para ficar um pouco menor */
 .btn-main-action {
   background-color: transparent;
-  border: 2px solid var(--marrom-artesanal); /* Borda marrom para destacar */
-  color: var(--marrom-artesanal);            /* Texto marrom para leitura */
-  padding: 18px 25px;
-  border-radius: 30px;
+  border: 2px solid var(--marrom-artesanal);
+  color: var(--marrom-artesanal);
+  padding: 14px 20px; /* Reduzido o padding para diminuir o tamanho do botão */
+  border-radius: 30px; /* Mantém ele arredondado para contrastar com o quadradão */
   text-align: center;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem; /* Diminuído levemente o texto para acompanhar o tamanho */
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: 0.3s;
+  transition: 0.3s ease;
   width: 100%;
-  max-width: 410px; /* Limita a largura do botão para ficar elegante */
+  max-width: 340px; /* Reduzido de 410px para 340px para ficar mais compacto */
 }
 
 /* Ajustando o Botão do Tour 360° para encaixar na mesma largura */
@@ -183,7 +184,7 @@ body {
   background-color: var(--verde-musgo);
   color: var(--texto-claro);
   padding: 18px 25px;
-  border-radius: 30px; /* Deixei arredondado igual ao de cima para combinar */
+  border-radius: 4px; /* Mudado de 30px para 4px para deixá-lo quadradão e robusto */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -205,7 +206,7 @@ body {
 .secao-transparente {
   background: transparent;
   width: 100%;
-  padding: 60px 20px 30px 20px;
+  padding: 150px 20px 30px 20px;
   text-align: center;
 }
 
@@ -351,7 +352,7 @@ body {
 /* --- 4. GALERIA DE ESPECIALIDADES --- */
 .galeria-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 4px;
   padding: 10px 15px 20px 15px;
   background-color: #ffffff;
@@ -456,13 +457,20 @@ body {
 
 /* --- 7. RESPONSIVIDADE DESKTOP --- */
 @media (min-width: 900px) {
+  /* ... regras atuais que você já tem do galeria-grid, nav-menu, etc ... */
+
+  /* ADICIONE ESTE BLOCO ABAIXO DENTRO DA MEDIA QUERY DO PC: */
+  .secao-transparente {
+    padding: 240px 20px; /* Espaço gigante para criar o "Quadradão" imponente no monitor */
+  }
+
   .galeria-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 750px;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
   }
   
   .diferenciais-grid {
-    max-width: 750px;
+    max-width: 900px;
   }
 
   .menu-toggle {
