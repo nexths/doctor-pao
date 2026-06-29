@@ -1,495 +1,528 @@
 :root {
-      --verde-musgo: #2E4F25;
-      --verde-escuro: #1b3316;
-      --verde-whatsapp: #25D366;
-      --marrom-artesanal: #4a2f1b;
-      --marrom-hover: #5c3d26;
-      --texto-claro: #ffffff;
-      --texto-escuro: #333333;
-      --fonte-titulo: 'Playfair Display', serif;
-      --fonte-corpo: 'Montserrat', sans-serif;
-    }
+  --verde-musgo: #2E4F25;
+  --verde-escuro: #1b3316;
+  --verde-whatsapp: #25D366;
+  --marrom-artesanal: #4a2f1b;
+  --marrom-hover: #5c3d26;
+  --texto-claro: #ffffff;
+  --texto-escuro: #333333;
+  --fonte-titulo: 'Playfair Display', serif;
+  --fonte-corpo: 'Montserrat', sans-serif;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: var(--fonte-corpo);
-      color: var(--texto-escuro);
-      background-color: #fcfcfc;
-      overflow-x: hidden;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    /* --- 1. SEÇÃO TOPO / HERO --- */
-    .hero-section {
-      position: relative;
-      min-height: 100vh; 
+body {
+  font-family: var(--fonte-corpo);
+  color: var(--texto-escuro);
+  /* REFEITO: O background agora fica travado no fundo do site todo para o efeito de "janela" */
+  background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('./assets/hero.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/hero.webp');
-      
-      background-attachment: fixed; 
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    .hero-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
+/* --- 1. SEÇÃO TOPO / HERO --- */
+.hero-section {
+  position: relative;
+  min-height: 100vh; /* sobrescrito pelo JS */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  overflow: hidden;
+  background: transparent; /* Removido o background antigo para usar o global do body */
+}
 
-    .logo-doctor-pao {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
-    /* Menu Hambúrguer Oculto */
-    .menu-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      z-index: 100;
-    }
+.logo-doctor-pao {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-    .menu-toggle .bar {
-      width: 30px;
-      height: 3px;
-      background-color: var(--texto-claro);
-      transition: 0.3s;
-    }
+/* Tarja branca de acabamento no final do Hero */
+.tarja-fechamento-hero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px; /* Altura sutil para fazer a moldura */
+  background-color: #ffffff;
+  z-index: 2;
+}
+/* Menu Hambúrguer - MOBILE */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 100;
+}
 
-    .nav-menu {
-      position: fixed;
-      top: 0; right: -100%;
-      width: 280px; height: 100vh;
-      background-color: rgba(27, 51, 22, 0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
-      z-index: 90;
-    }
+.menu-toggle .bar {
+  width: 30px;
+  height: 3px;
+  background-color: var(--texto-claro);
+  transition: 0.3s;
+}
 
-    .nav-menu.open { right: 0; }
+/* Nav lateral - MOBILE */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background-color: rgba(27, 51, 22, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+  z-index: 90;
+}
 
-    .nav-menu ul { list-style: none; text-align: center; }
-    .nav-menu ul li { margin: 25px 0; }
-    .nav-menu ul li a {
-      color: var(--texto-claro);
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-family: var(--fonte-titulo);
-      letter-spacing: 2px;
-    }
+.nav-menu.open { right: 0; }
 
-    .hero-center-content {
-      text-align: center;
-      color: var(--texto-claro);
-      padding: 20px;
-      border-radius: 8px;
-      background: radial-gradient(circle, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
-    }
+.nav-menu ul { list-style: none; text-align: center; }
+.nav-menu ul li { margin: 25px 0; }
+.nav-menu ul li a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: var(--fonte-titulo);
+  letter-spacing: 2px;
+}
 
-    .hero-center-content h1 {
-      font-family: var(--fonte-titulo);
-      font-size: 2.8rem;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: 1px;
-      margin-bottom: 15px;
-    }
+.hero-center-content {
+  text-align: center;
+  color: var(--texto-claro);
+  padding: 20px;
+  border-radius: 8px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
+}
 
-    .hero-center-content p {
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-    }
+.hero-center-content h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
 
-    .hero-footer-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 100%;
-      max-width: 450px;
-      margin: 0 auto;
-    }
+.hero-center-content p {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
 
-    .btn-main-action {
-      background: none;
-      border: 2px solid var(--texto-claro);
-      color: var(--texto-claro);
-      padding: 18px 25px; 
-      border-radius: 30px;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 700; 
-      font-size: 0.95rem; 
-      letter-spacing: 1.5px; 
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
+.hero-footer-buttons {
+  background-color: #ffffff; /* Transforma o fundo dos botões na tarja branca */
+  width: calc(100% + 40px);  /* Compensa o padding de 20px das laterais do hero para colar nas bordas */
+  margin-left: -20px;        /* Joga a tarja totalmente para a esquerda para colar na borda */
+  margin-bottom: -20px;      /* Cola a tarja totalmente no rodapé do Hero */
+  padding: 40px 20px;        /* Dá uma altura elegante acima e abaixo dos botões */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;       /* Centraliza os botões dentro da tarja */
+  z-index: 5;
+}
 
-    /* Banner do Tour Virtual Simplificado e Centralizado */
-    .tour-virtual-banner {
-      background-color: var(--verde-musgo);
-      color: var(--texto-claro);
-      padding: 18px 25px; 
-      border-radius: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      width: 100%;
-      transition: background-color 0.2s ease;
-    }
+/* Efeito de hover opcional para o botão no fundo branco */
+.btn-main-action:hover {
+  background-color: var(--marrom-artesanal);
+  color: #ffffff;
+}
 
-    .tour-text p { 
-      font-size: 0.9rem; 
-      font-weight: 700;
-      text-align: center;
-      letter-spacing: 1.5px;
-    }
+/* Ajustando o Botão principal para aparecer no fundo branco */
+.btn-main-action {
+  background-color: transparent;
+  border: 2px solid var(--marrom-artesanal); /* Borda marrom para destacar */
+  color: var(--marrom-artesanal);            /* Texto marrom para leitura */
+  padding: 18px 25px;
+  border-radius: 30px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: 0.3s;
+  width: 100%;
+  max-width: 410px; /* Limita a largura do botão para ficar elegante */
+}
 
-    /* --- 2. SEÇÃO DIFERENCIAIS COMPACTA (ESTILO MOSAICO) --- */
-    .diferenciais-banner {
-      min-height: auto;
-      background: #ffffff !important;
-      color: #333333 !important;
-      padding: 40px 20px 15px 20px;
-      text-align: center;
-    }
+/* Ajustando o Botão do Tour 360° para encaixar na mesma largura */
+.tour-virtual-banner {
+  background-color: var(--verde-musgo);
+  color: var(--texto-claro);
+  padding: 18px 25px;
+  border-radius: 30px; /* Deixei arredondado igual ao de cima para combinar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 410px;
+  transition: background-color 0.2s ease;
+}
 
-    .diferenciais-banner h2 {
-      font-family: var(--fonte-titulo);
-      font-size: 2.2rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      color: #000000;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
+.tour-text p {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
+}
 
-    .diferenciais-banner p {
-      font-size: 0.9rem;
-      font-weight: 400;
-      max-width: 600px;
-      line-height: 1.6;
-      margin: 0 auto;
-      color: #555555;
-    }
+/* --- NOVO: CLASSES DE STRUTURA PARA O EFEITO INTERCALADO --- */
+.secao-transparente {
+  background: transparent;
+  width: 100%;
+  padding: 60px 20px 30px 20px;
+  text-align: center;
+}
 
-    .diferenciais-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 4px; 
-      padding: 10px 15px 40px 15px;
-      background-color: #fff;
-      max-width: 480px; 
-      margin: 0 auto; 
-      position: relative;
-    }
+.conteudo-banner-transparente {
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-    .diferenciais-grid::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 1px;
-      background-color: rgba(0, 0, 0, 0.15);
-    }
+.conteudo-banner-transparente h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #ffffff; /* Texto branco para brilhar sobre o background escuro */
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85); /* Sombra para garantir legibilidade perfeita */
+}
 
-    .diferencial-card {
-      text-align: center;
-      position: relative;
-    }
+.conteudo-banner-transparente p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #ffffff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+}
 
-    .diferencial-card img {
-      width: 100%;
-      aspect-ratio: 1/1; 
-      object-fit: cover;
-      border-radius: 4px; 
-      display: block;
-    }
-    
-    .diferencial-card span {
-      display: block;
-      margin-top: 8px;
-      font-family: var(--fonte-corpo);
-      font-size: 0.75rem; 
-      font-weight: 600;
-      color: #555555;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
-    }
+/* Tarjas Brancas Sólidas que deslizam tampando o fundo de lado a lado */
+.tarja-branca-container {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px 0;
+  position: relative;
+  z-index: 5;
+}
 
-    /* --- 3. SEÇÃO REDES SOCIAIS + TRACINHO EMBAIXO --- */
-    .redes-sociais-section {
-      text-align: center;
-      padding: 40px 20px 40px 20px;
-      background-color: #ffffff;
-      position: relative;
-    }
 
-    .redes-sociais-section::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 1px;
-      background-color: rgba(0, 0, 0, 0.15);
-    }
+/* --- 2. GRID DE DIFERENCIAIS --- */
+.diferenciais-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 10px 15px 20px 15px;
+  background-color: #ffffff;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
 
-    .redes-sociais-section h2 {
-      font-family: var(--fonte-titulo);
-      font-size: 2rem;
-      font-weight: 500;
-      color: #333333;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.diferenciais-grid::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
 
-    .icones-redes-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+.diferencial-card {
+  text-align: center;
+  position: relative;
+}
 
-    .btn-rede-circular {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: var(--marrom-artesanal);
-      color: var(--texto-claro);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s ease, background-color 0.2s ease;
-    }
+.diferencial-card img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
 
-    .btn-rede-circular:active {
-      transform: scale(0.92);
-      background-color: var(--marrom-hover);
-    }
+.diferencial-card span {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--fonte-corpo);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
 
-    /* --- 4. GALERIA PREMIUM 3x3 INSTAGRAM --- */
-    .galeria-section-title {
-      text-align: center;
-      padding: 40px 20px 15px 20px;
-      font-family: var(--fonte-titulo);
-      font-size: 2.2rem;
-      font-weight: 500;
-      color: #333333;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background-color: #ffffff;
-    }
+/* --- 3. REDES SOCIAIS (Também se comporta como tarja branca) --- */
+.redes-sociais-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #ffffff;
+  position: relative;
+  width: 100%;
+  z-index: 5;
+}
 
-    .galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 4px; 
-      padding: 10px 15px 40px 15px;
-      background-color: #ffffff;
-      max-width: 480px; 
-      margin: 0 auto; 
-    }
+.redes-sociais-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
 
-    @media (min-width: 900px) {
-      .galeria-grid {
-        grid-template-columns: repeat(3, 1fr); 
-        max-width: 750px; 
-      }
-    }
+.redes-sociais-section h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
-    .galeria-img {
-      width: 100%;
-      aspect-ratio: 1 / 1; 
-      object-fit: cover;
-      cursor: pointer;
-      border-radius: 4px; 
-      display: block;
-      transition: transform 0.2s;
-    }
+.icones-redes-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-    /* Lightbox Modal */
-    .lightbox-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.92);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
+.btn-rede-circular {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--marrom-artesanal);
+  color: var(--texto-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
 
-    .lightbox-conteudo { max-width: 90%; max-height: 80%; border-radius: 4px; }
-    .lightbox-fechar {
-      position: absolute; top: 20px; right: 25px;
-      color: #ffffff; font-size: 45px; font-weight: bold; cursor: pointer;
-    }
+.btn-rede-circular:active {
+  transform: scale(0.92);
+  background-color: var(--marrom-hover);
+}
 
-    /* --- 5. RODAPÉ OTIMIZADO --- */
-    .site-footer {
-      background-color: var(--verde-escuro);
-      color: var(--texto-claro);
-      padding: 40px 20px 20px 20px;
-      text-align: center;
-    }
+/* --- 4. GALERIA DE ESPECIALIDADES --- */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 10px 15px 20px 15px;
+  background-color: #ffffff;
+  max-width: 480px;
+  margin: 0 auto;
+}
 
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
+.galeria-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+  display: block;
+  transition: transform 0.2s;
+  background-color: #e8e0d5;
+}
 
-    .footer-block h3 {
-      font-family: var(--fonte-titulo);
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
+/* Lightbox Modal */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
 
-    .footer-block p { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; }
-    
-    .btn-maps { 
-      display: inline-block; 
-      margin-top: 10px; 
-      color: #fff; 
-      font-size: 0.85rem; 
-      font-weight: 600;
-      text-decoration: underline;
-    }
+.lightbox-conteudo { max-width: 90%; max-height: 80%; border-radius: 4px; }
+.lightbox-fechar {
+  position: absolute; top: 20px; right: 25px;
+  color: #ffffff; font-size: 45px; font-weight: bold; cursor: pointer;
+}
 
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 20px;
-      font-size: 0.7rem;
-      opacity: 0.5;
-    }
+/* --- 5. RODAPÉ --- */
+.site-footer {
+  background-color: var(--verde-escuro);
+  color: var(--texto-claro);
+  padding: 40px 20px 20px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
 
-    /* --- 6. BOTÃO FLUTUANTE DO WHATSAPP --- */
-    .whatsapp-flutuante {
-      position: fixed;
-      width: 60px;
-      height: 60px;
-      bottom: 20px;
-      right: 20px;
-      background-color: var(--verde-whatsapp);
-      color: #FFF;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 32px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
 
-    .whatsapp-flutuante:active {
-      transform: scale(0.9);
-    }
+.footer-block h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
 
-    /* --- 7. RESPONSIVIDADE DESKTOP --- */
-    @media (min-width: 900px) {
-      .hero-section {
-        background-attachment: fixed;
-      }
+.footer-block p { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; }
 
-      .menu-toggle {
-        display: none;
-      }
+.btn-maps {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
 
-      .nav-menu {
-        position: relative;
-        top: 0;
-        right: 0; 
-        width: auto;
-        height: auto;
-        background: none;
-        backdrop-filter: none;
-        display: block;
-      }
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
 
-      .nav-menu ul {
-        display: flex;
-        gap: 40px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
+/* --- 6. BOTÃO WHATSAPP FLUTUANTE --- */
+.whatsapp-flutuante {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--verde-whatsapp);
+  color: #FFF;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 32px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
 
-      .nav-menu ul li {
-        margin: 0;
-      }
+.whatsapp-flutuante:active {
+  transform: scale(0.9);
+}
 
-      .nav-menu ul li a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        font-family: var(--fonte-corpo);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-    }
+/* --- 7. RESPONSIVIDADE DESKTOP --- */
+@media (min-width: 900px) {
+  .galeria-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 750px;
+  }
+  
+  .diferenciais-grid {
+    max-width: 750px;
+  }
 
-    /* --- ASSINATURA DO DESENVOLVEDOR NO RODAPÉ --- */
-    .assinatura-desenvolvedor {
-      margin-top: 12px;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      opacity: 0.7;
-      transition: opacity 0.2s ease;
-    }
+  .menu-toggle {
+    display: none;
+  }
 
-    .assinatura-desenvolvedor a {
-      color: var(--texto-claro);
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
+  .nav-menu {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    backdrop-filter: none;
+    display: block;
+  }
 
-    .assinatura-desenvolvedor:hover {
-      opacity: 1;
-    }
+  .nav-menu ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-    .assinatura-desenvolvedor a:hover {
-      color: var(--verde-whatsapp);
-      border-bottom-color: var(--verde-whatsapp);
-    }
+  .nav-menu ul li { margin: 0; }
+
+  .nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}
+
+/* --- ASSINATURA DO DESENVOLVEDOR --- */
+.assinatura-desenvolvedor {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.assinatura-desenvolvedor a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.assinatura-desenvolvedor:hover {
+  opacity: 1;
+}
+
+.assinatura-desenvolvedor a:hover {
+  color: var(--verde-whatsapp);
+  border-bottom-color: var(--verde-whatsapp);
+}
