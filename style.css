@@ -36,12 +36,12 @@ body {
 /* --- 1. SEÇÃO TOPO / HERO --- */
 .hero-section {
   position: relative;
-  min-height: 100vh; /* sobrescrito pelo JS */
+  min-height: 100svh; /* sobrescrito pelo JS */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  overflow: hidden;
+  overflow: visible;
   background: transparent; /* Removido o background antigo para usar o global do body */
 }
 
