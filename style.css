@@ -41,7 +41,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  overflow: visible;
+  overflow: hidden;
   background: transparent; /* Removido o background antigo para usar o global do body */
 }
 
