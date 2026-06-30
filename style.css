@@ -146,7 +146,7 @@ body {
   width: calc(100% + 40px);  /* Compensa o padding de 20px das laterais do hero para colar nas bordas */
   margin-left: -20px;        /* Joga a tarja totalmente para a esquerda para colar na borda */
   margin-bottom: -20px;      /* Cola a tarja totalmente no rodapé do Hero */
-  padding: 40px 20px;        /* Dá uma altura elegante acima e abaixo dos botões */
+  padding: 30px 20px;        /* Dá uma altura elegante acima e abaixo dos botões */
   display: flex;
   flex-direction: column;
   gap: 16px;
