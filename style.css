@@ -534,3 +534,38 @@ body {
   color: var(--verde-whatsapp);
   border-bottom-color: var(--verde-whatsapp);
 }
+
+/* --- BOTÃO DA GALERIA DO GOOGLE FOTOS --- */
+.container-botao-galeria {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px; /* Separa o botão da grade de imagens */
+  padding: 0 15px;
+  width: 100%;
+}
+
+.botao-ver-mais {
+  background-color: var(--marrom-artesanal); /* Usa o marrom da identidade visual */
+  color: #ffffff;
+  font-family: var(--fonte-corpo);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 14px 36px;
+  border-radius: 30px; /* Estilo pílula para combinar com o botão principal do hero */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+  width: 100%;
+  max-width: 280px; /* Fica compacto no celular e centralizado no PC */
+}
+
+/* Efeito quando clica no celular ou passa o mouse */
+.botao-ver-mais:active,
+.botao-ver-mais:hover {
+  background-color: var(--verde-musgo); /* Vira o verde da marca ao interagir */
+  transform: scale(0.96);
+}
