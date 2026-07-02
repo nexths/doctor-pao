@@ -54,27 +54,30 @@ const bgImage = document.querySelector(".hero-bg img");
 function ajustarFundoEstiloSQS() {
   if (!bgImage) return;
 
-  // Mede as dimensões reais da área visível (viewport)
+  // Mede as dimensões reais da tela
   const larguraTela = window.innerWidth;
   const alturaTela = window.innerHeight;
   
-  // Obtém a proporção exata da foto original
+  // Obtém a proporção original da foto
   const proporcaoImagem = bgImage.naturalWidth / bgImage.naturalHeight;
 
-  let novaLargura = larguraTela;
-  let novaAltura = larguraTela / proporcaoImagem;
+  // Criamos uma margem de segurança de 60px para a imagem "vazar" de forma invisível
+  // para fora da tela, cobrindo as faixas do puxão do navegador
+  const margemSeguranca = 60; 
+  
+  let novaLargura = larguraTela + margemSeguranca;
+  let novaAltura = novaLargura / proporcaoImagem;
 
-  // Aplica o algoritmo matemático de "cover" manual
-  if (novaAltura < alturaTela) {
-    novaAltura = alturaTela;
-    novaLargura = alturaTela * proporcaoImagem;
+  // Aplica o algoritmo de cover considerando a folga de segurança
+  if (novaAltura < (alturaTela + margemSeguranca)) {
+    novaAltura = alturaTela + margemSeguranca;
+    novaLargura = novaAltura * proporcaoImagem;
   }
 
-  // injeta os valores travados em pixels inteiros para blindar contra a barra do Chrome
+  // Injeta os valores finais com segurança
   bgImage.style.width = Math.ceil(novaLargura) + "px";
   bgImage.style.height = Math.ceil(novaAltura) + "px";
 }
-
 // Executa assim que a imagem estiver totalmente carregada na memória
 if (bgImage) {
   if (bgImage.complete) {
