@@ -488,22 +488,127 @@ html {
 
 /* --- 7. RESPONSIVIDADE DESKTOP --- */
 @media (min-width: 900px) {
-  /* ... regras atuais que você já tem do galeria-grid, nav-menu, etc ... */
-
-  /* ADICIONE ESTE BLOCO ABAIXO DENTRO DA MEDIA QUERY DO PC: */
+  
+  /* Seções transparentes com o fundo verde aparecendo */
   .secao-transparente {
-    padding: 240px 20px; /* Espaço gigante para criar o "Quadradão" imponente no monitor */
+    padding: 240px 20px; 
+  }
+
+  /* ================================================================= */
+  /* 1. TARJA BRANCA DO HERO (Botões e Tour 360 Grandes + Tarja Alta)  */
+  /* ================================================================= */
+  .hero-footer-buttons {
+    flex-direction: row;     /* Botões lado a lado */
+    justify-content: center;
+    gap: 30px;               
+    
+    /* ALTURA DA TARJA: Bem grossa e espaçada */
+    padding: 80px 20px;      
+  }
+
+  /* Botões grandes e idênticos em tamanho */
+  .btn-main-action, 
+  .tour-virtual-banner {
+    max-width: 380px;        
+    height: 55px;            
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  /* ================================================================= */
+  /* 2. TARJA BRANCA DAS TRÊS FOTOS (Preparo Artesanal, Orgânica...)  */
+  /* ================================================================= */
+  .tarja-branca-container {
+    /* ALTURA DA TARJA: Super expandida em cima e embaixo */
+    padding: 100px 0 120px 0;         
+  }
+
+  .diferenciais-grid {
+    max-width: 1100px;       /* Alarga a grade no monitor */
+    gap: 30px;               
+    padding: 0 20px;         
+  }
+
+  /* TEXTO MAIOR: Mantido o tamanho da primeira versão */
+  .diferencial-card span {
+    font-size: 0.95rem;      
+    margin-top: 15px;
+  }
+
+  /* Linha divisória ajustada para a nova altura */
+  .diferenciais-grid::after {
+    width: 40%;
+    bottom: -50px;           
+  }
+
+
+  /* ================================================================= */
+  /* 3. TARJA BRANCA DAS REDES SOCIAIS (Título e Ícones Grandes + Alta)*/
+  /* ================================================================= */
+  .redes-sociais-section {
+    /* ALTURA DA TARJA: Bloco branco massivo e imponente */
+    padding: 120px 20px;      
+  }
+
+  /* TÍTULO MAIOR: Mantido bem grande para destacar no PC */
+  .redes-sociais-section h2 {
+    font-size: 2.6rem;       
+    margin-bottom: 45px;     
+  }
+
+  .icones-redes-container {
+    gap: 35px;               
+  }
+
+  /* ÍCONES GRANDES: Círculos robustos de 75px com símbolos destacados */
+  .btn-rede-circular {
+    width: 75px;             
+    height: 75px;
+    font-size: 2.2rem;         
+  }
+  
+  .btn-rede-circular:hover {
+    transform: scale(1.1);   /* Efeito sutil ao passar o mouse */
+    background-color: var(--verde-musgo);
+  }
+
+  .redes-sociais-section::after {
+    bottom: -50px;           
+  }
+
+
+  /* ================================================================= */
+  /* 4. TARJA BRANCA DA GRADE DE FOTOS E BOTÃO "VER MAIS" (Proporcional)*/
+  /* ================================================================= */
+  .secao-transparente#especialidades + .tarja-branca-container {
+    /* ALTURA DA TARJA: Muito fundo branco abaixo do botão para equilibrar com o topo */
+    padding: 100px 0 140px 0;
   }
 
   .galeria-grid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 900px;
-  }
-  
-  .diferenciais-grid {
-    max-width: 900px;
+    grid-template-columns: repeat(4, 1fr); /* 4 fotos por linha no PC */
+    max-width: 1100px;       /* Alinhado perfeitamente com a grade de cima */
+    gap: 20px;               
+    padding: 0 20px;
   }
 
+  .container-botao-galeria {
+    margin-top: 55px;        /* Espaço generoso entre as fotos e o botão */
+  }
+
+  /* BOTÃO MAIOR: Deixado robusto para o desktop */
+  .botao-ver-mais {
+    max-width: 320px;        
+    padding: 16px 40px;
+    font-size: 0.95rem;
+  }
+
+
+  /* ================================================================= */
+  /* Configurações estruturais do Menu (Mantidas como estavam)         */
+  /* ================================================================= */
   .menu-toggle {
     display: none;
   }
