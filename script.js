@@ -54,7 +54,15 @@ const bgImage = document.querySelector(".hero-bg img");
 function ajustarFundoEstiloSQS() {
   if (!bgImage) return;
 
-  // Mede as dimensões reais da tela
+  // 🚀 SE FOR CELULAR (Telas menores que 900px), PARA O JAVASCRIPT IMEDIATAMENTE!
+  if (window.innerWidth < 900) {
+    bgImage.style.width = "100%";
+    bgImage.style.height = "100svh"; // Usa a mesma unidade estável que o buffet usou!
+    bgImage.style.objectFit = "cover";
+    return; // Interrompe a função para não aplicar o zoom e nem dar tranco
+  }
+
+  // Mede as dimensões reais da tela (Executado apenas em Computadores)
   const larguraTela = window.innerWidth;
   const alturaTela = window.innerHeight;
   
@@ -78,6 +86,7 @@ function ajustarFundoEstiloSQS() {
   bgImage.style.width = Math.ceil(novaLargura) + "px";
   bgImage.style.height = Math.ceil(novaAltura) + "px";
 }
+
 // Executa assim que a imagem estiver totalmente carregada na memória
 if (bgImage) {
   if (bgImage.complete) {

@@ -705,3 +705,15 @@ html {
   background-color: var(--verde-musgo); /* Vira o verde da marca ao interagir */
   transform: scale(0.96);
 }
+
+@media (max-width: 899px) {
+  .hero-bg, .hero-bg img {
+    height: 100svh !important; /* Trava o fundo no tamanho exato da tela do celular */
+    width: 100% !important;
+    object-fit: cover !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    transform: none !important; /* Mata o tranco do translate3d */
+  }
+}
