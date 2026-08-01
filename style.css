@@ -1,655 +1,719 @@
 :root {
-  --paper: #f5f1e9;
-  --paper-2: #eee8dc;
-  --ink: #26231f;
-  --muted: #777067;
-  --brown: #604331;
-  --green: #354a2d;
-  --line: rgba(38,35,31,.16);
-  --white: #fffdf8;
-  --title: 'Playfair Display', Georgia, serif;
-  --body: 'DM Sans', Arial, sans-serif;
+  --verde-musgo: #2E4F25;
+  --verde-escuro: #1b3316;
+  --verde-whatsapp: #25D366;
+  --marrom-artesanal: #4a2f1b;
+  --marrom-hover: #5c3d26;
+  --texto-claro: #ffffff;
+  --texto-escuro: #333333;
+  --fonte-titulo: 'Playfair Display', serif;
+  --fonte-corpo: 'Montserrat', sans-serif;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--body);
-  overflow-x: hidden;
+    font-family: var(--fonte-corpo);
+    color: var(--texto-escuro);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--verde-musgo);
 }
 
-a { color: inherit; }
-
-.site-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  overflow: hidden;
-  background: #3d342b;
+.hero-bg {
+    position: fixed; /* Trava o container no fundo da página */
+    inset: 0;
+    z-index: -2;
+    overflow: hidden;
+    background-color: var(--verde-musgo); /* Cor de fundo idêntica caso a imagem demore */
 }
 
-.site-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.34);
+.hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1; /* Fica acima da tag img, mas abaixo do conteúdo do site */
 }
 
-.site-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+/* 1. Impede que o navegador faça o efeito elástico vertical no fundo global */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none; /* Desativa o efeito elástico para o fundo não vazar */
 }
 
-.hero {
-  min-height: 100svh;
-  padding: 24px 5vw 0;
-  color: #fff;
+/* ... mantenha suas outras regras ... */
+
+.hero-bg img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0); 
+    display: block;
+    z-index: 0;
+    max-width: none !important;
+    max-height: none !important;
+    /* Remove qualquer suavização que cause atraso na renderização do celular */
+    transition: none !important; 
+}
+/* --- 1. SEÇÃO TOPO / HERO --- */
+.hero-section {
+  position: relative;
+  min-height: 100svh; /* sobrescrito pelo JS */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
+  padding: 20px;
+  overflow: hidden;
+  background: transparent; /* Removido o background antigo para usar o global do body */
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.08) 48%, rgba(0,0,0,.48));
-  z-index: -1;
-  pointer-events: none;
-}
-
-.hero-top {
+.hero-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.logo-doctor-pao {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Tarja branca de acabamento no final do Hero */
+.tarja-fechamento-hero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25px; /* Altura sutil para fazer a moldura */
+  background-color: #ffffff;
+  z-index: 2;
+}
+/* Menu Hambúrguer - MOBILE */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 100;
+}
+
+.menu-toggle .bar {
+  width: 30px;
+  height: 3px;
+  background-color: var(--texto-claro);
+  transition: 0.3s;
+}
+
+/* Nav lateral - MOBILE */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background-color: rgba(27, 51, 22, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.4s cubic-bezier(0.1, 1, 0.1, 1);
+  z-index: 90;
+}
+
+.nav-menu.open { right: 0; }
+
+.nav-menu ul { list-style: none; text-align: center; }
+.nav-menu ul li { margin: 25px 0; }
+.nav-menu ul li a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: var(--fonte-titulo);
+  letter-spacing: 2px;
+}
+
+.hero-center-content {
+  text-align: center;
+  color: var(--texto-claro);
+  padding: 20px;
+  border-radius: 8px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
+}
+
+.hero-center-content h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.hero-center-content p {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.hero-footer-buttons {
+  background-color: #ffffff; /* Transforma o fundo dos botões na tarja branca */
+  width: calc(100% + 40px);  /* Compensa o padding de 20px das laterais do hero para colar nas bordas */
+  margin-left: -20px;        /* Joga a tarja totalmente para a esquerda para colar na borda */
+  margin-bottom: -20px;      /* Cola a tarja totalmente no rodapé do Hero */
+  padding: 25px 20px;        /* Dá uma altura elegante acima e abaixo dos botões */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;       /* Centraliza os botões dentro da tarja */
+  z-index: 5;
+}
+
+/* Efeito Hover: Quando passa o mouse, ele ganha a cor verde-musgo e muda a borda */
+.btn-main-action:hover {
+  background-color: var(--verde-musgo); /* Agora fica verde igual ao outro botão */
+  border-color: var(--verde-musgo);     /* Ajusta a borda para acompanhar o verde */
+  color: #ffffff;
+}
+
+/* Ajustando o Botão principal para ficar um pouco menor */
+.btn-main-action {
+  background-color: transparent;
+  border: 2px solid var(--marrom-artesanal);
+  color: var(--marrom-artesanal);
+  padding: 14px 20px; /* Reduzido o padding para diminuir o tamanho do botão */
+  border-radius: 30px; /* Mantém ele arredondado para contrastar com o quadradão */
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem; /* Diminuído levemente o texto para acompanhar o tamanho */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  width: 100%;
+  max-width: 340px; /* Reduzido de 410px para 340px para ficar mais compacto */
+}
+
+/* Ajustando o Botão do Tour 360° para encaixar na mesma largura */
+.tour-virtual-banner {
+  background-color: var(--verde-musgo);
+  color: var(--texto-claro);
+  padding: 18px 25px;
+  border-radius: 4px; /* Mudado de 30px para 4px para deixá-lo quadradão e robusto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 410px;
+  transition: background-color 0.2s ease;
+}
+
+.tour-text p {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
+}
+
+/* --- NOVO: CLASSES DE STRUTURA PARA O EFEITO INTERCALADO --- */
+.secao-transparente {
+  background: transparent;
+  width: 100%;
+  padding: 150px 20px 30px 20px;
+  text-align: center;
+}
+
+.conteudo-banner-transparente {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.conteudo-banner-transparente h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #ffffff; /* Texto branco para brilhar sobre o background escuro */
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85); /* Sombra para garantir legibilidade perfeita */
+}
+
+.conteudo-banner-transparente p {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #ffffff;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Tarjas Brancas Sólidas que deslizam tampando o fundo de lado a lado */
+.tarja-branca-container {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px 0;
   position: relative;
   z-index: 5;
 }
 
-.brand-mark { display: block; }
 
-.logo-doctor-pao {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  border: 1px solid rgba(255,255,255,.5);
-  box-shadow: 0 8px 30px rgba(0,0,0,.18);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  gap: 5px;
-  flex-direction: column;
-  padding: 8px;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 25px;
-  height: 2px;
-  background: #fff;
-}
-
-.nav-menu ul {
-  display: flex;
-  list-style: none;
-  gap: 34px;
-}
-
-.nav-menu a {
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  opacity: .92;
-}
-
-.hero-content {
-  max-width: 850px;
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  padding: 80px 20px 100px;
-}
-
-.eyebrow {
-  font-size: 10px;
-  letter-spacing: 3px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  opacity: .9;
-}
-
-.hero h1 {
-  font-family: var(--title);
-  font-size: clamp(3rem, 7vw, 6.8rem);
-  line-height: .98;
-  font-weight: 500;
-  letter-spacing: -2px;
-}
-
-.hero h1 em,
-.intro-copy h2 em,
-.story-layout h2 em,
-.social-section h2 em,
-.specialties-header h2 em {
-  font-style: italic;
-  font-weight: 500;
-}
-
-.hero-subtitle {
-  margin-top: 24px;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-.hero-actions {
-  width: calc(100% + 10vw);
-  margin-left: -5vw;
-  padding: 30px 5vw;
-  background: var(--paper);
-  color: var(--ink);
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  position: relative;
-  z-index: 3;
-}
-
-.btn {
-  min-width: 250px;
-  padding: 16px 25px;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 10px;
-  font-weight: 600;
-  transition: .25s ease;
-}
-
-.btn-light {
-  border: 1px solid var(--ink);
-  background: transparent;
-}
-
-.btn-solid {
-  background: var(--green);
-  border: 1px solid var(--green);
-  color: #fff;
-}
-
-.btn:hover { transform: translateY(-2px); }
-
-main {
-  position: relative;
-  z-index: 1;
-  background: var(--paper);
-}
-
-.intro-section,
-.story-section,
-.social-section,
-.specialties-header {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 120px 6vw;
-}
-
-.section-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 38px;
-}
-
-.intro-copy {
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 10vw;
-  align-items: center; /* Centralizado verticalmente */
-}
-
-.intro-copy h2,
-.story-layout h2,
-.social-section h2,
-.specialties-header h2 {
-  font-family: var(--title);
-  font-size: clamp(2.5rem, 4.5vw, 4.8rem);
-  line-height: 1.05;
-  font-weight: 500;
-  letter-spacing: -1.5px;
-}
-
-.intro-copy p,
-.story-layout p {
-  color: #5f5952;
-  font-size: 14px;
-  line-height: 1.9;
-  max-width: 580px; /* Evita que o texto fique gigante em monitores ultrawide */
-}
-
-.photo-strip {
-  background: var(--paper-2);
-  padding: 70px 6vw;
-}
-
+/* --- 2. GRID DE DIFERENCIAIS --- */
 .diferenciais-grid {
-  max-width: 1150px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  gap: 4px;
+  padding: 10px 15px 20px 15px;
+  background-color: #ffffff;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.diferenciais-grid::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.diferencial-card {
+  text-align: center;
+  position: relative;
 }
 
 .diferencial-card img {
   width: 100%;
-  aspect-ratio: 1.25 / 1;
+  aspect-ratio: 1/1;
   object-fit: cover;
+  border-radius: 4px;
   display: block;
 }
 
 .diferencial-card span {
   display: block;
-  padding-top: 13px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--muted);
+  margin-top: 8px;
+  font-family: var(--fonte-corpo);
+  font-size: 0.75rem;
   font-weight: 600;
+  color: #555555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
 }
 
-.story-section {
-  background: var(--paper);
+/* --- 3. REDES SOCIAIS (Também se comporta como tarja branca) --- */
+.redes-sociais-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #ffffff;
+  position: relative;
+  width: 100%;
+  z-index: 5;
 }
 
-.story-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10vw;
-  align-items: center; /* Centralizado verticalmente */
+.redes-sociais-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
-.story-layout p {
-  padding-top: 8px;
+.redes-sociais-section h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.social-section {
-  max-width: none;
-  background: var(--green);
-  color: #f8f5ed;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 6vw;
-  align-items: center;
+.icones-redes-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-.social-section .section-label { color: rgba(255,255,255,.58); }
-
-.social-section h2 { 
-  font-size: clamp(2.2rem, 4vw, 4.2rem); 
-  line-height: 1.1;
-}
-
-.social-links {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(255,255,255,.22);
-}
-
-.social-link {
-  padding: 20px 5px;
-  border-bottom: 1px solid rgba(255,255,255,.22);
-  text-decoration: none;
+.btn-rede-circular {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--marrom-artesanal);
+  color: var(--texto-claro);
   display: flex;
   align-items: center;
-  gap: 13px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  transition: opacity 0.2s ease;
+  justify-content: center;
+  font-size: 1.4rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.social-link:hover { opacity: 0.75; }
-
-.social-link i { width: 18px; font-size: 15px; }
-
-.specialties-header {
-  padding-bottom: 55px;
-  text-align: center; /* Título centralizado */
+.btn-rede-circular:active {
+  transform: scale(0.92);
+  background-color: var(--marrom-hover);
 }
 
-.gallery-section {
-  background: var(--paper-2);
-  padding: 0 6vw 90px;
-}
-
+/* --- 4. GALERIA DE ESPECIALIDADES --- */
 .galeria-grid {
-  max-width: 1150px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 10px 15px 20px 15px;
+  background-color: #ffffff;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .galeria-img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: block;
   cursor: pointer;
-  transition: transform .3s ease;
+  border-radius: 4px;
+  display: block;
+  transition: transform 0.2s;
+  background-color: #e8e0d5;
 }
 
-.galeria-img:hover { transform: scale(.985); }
-
-.container-botao-galeria {
-  display: flex;
-  justify-content: center;
-  margin-top: 45px;
-}
-
-.botao-ver-mais {
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 6px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  transition: opacity 0.2s ease;
-}
-
-.botao-ver-mais:hover { opacity: 0.65; }
-
+/* Lightbox Modal */
 .lightbox-modal {
   display: none;
   position: fixed;
-  inset: 0;
-  background: rgba(20,18,15,.95);
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.92);
   z-index: 1000;
   justify-content: center;
   align-items: center;
-  padding: 30px;
 }
 
-.lightbox-conteudo {
-  max-width: 92%;
-  max-height: 86%;
-  object-fit: contain;
-}
-
+.lightbox-conteudo { max-width: 90%; max-height: 80%; border-radius: 4px; }
 .lightbox-fechar {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  color: #fff;
-  font-size: 42px;
-  font-weight: 300;
-  cursor: pointer;
+  position: absolute; top: 20px; right: 25px;
+  color: #ffffff; font-size: 45px; font-weight: bold; cursor: pointer;
 }
 
+/* --- 5. RODAPÉ --- */
 .site-footer {
-  background: #211f1b;
-  color: #eee9df;
-  padding: 90px 6vw 25px;
+  background-color: var(--verde-escuro);
+  color: var(--texto-claro);
+  padding: 40px 20px 20px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
 }
 
 .footer-container {
-  max-width: 1150px;
-  margin: 0 auto 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10vw;
-}
-
-.footer-kicker {
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: #a59d90;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
 }
 
 .footer-block h3 {
-  font-family: var(--title);
-  font-size: 38px;
-  font-weight: 500;
-  margin: 14px 0 18px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 
-.footer-block p {
-  color: #aaa398;
-  font-size: 12px;
-  line-height: 1.8;
-}
+.footer-block p { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; }
 
 .btn-maps {
   display: inline-block;
-  margin-top: 18px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-decoration: none;
-  border-bottom: 1px solid #777065;
-  padding-bottom: 5px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .footer-bottom {
-  max-width: 1150px;
-  margin: auto;
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  color: #777168;
-  font-size: 9px;
-  letter-spacing: .5px;
+  font-size: 0.7rem;
+  opacity: 0.5;
 }
 
-.assinatura-desenvolvedor a {
-  color: #b8b0a5;
-  text-decoration: none;
-}
-
+/* --- 6. BOTÃO WHATSAPP FLUTUANTE --- */
 .whatsapp-flutuante {
   position: fixed;
-  right: 22px;
-  bottom: 22px;
-  width: 52px;
-  height: 52px;
-  background: #25D366;
-  color: #fff;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--verde-whatsapp);
+  color: #FFF;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  font-size: 27px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.2);
+  text-align: center;
+  font-size: 32px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
-@media (max-width: 899px) {
-  .hero {
-    min-height: 100svh;
-    padding: 18px 22px 0;
+.whatsapp-flutuante:active {
+  transform: scale(0.9);
+}
+
+/* --- 7. RESPONSIVIDADE DESKTOP --- */
+@media (min-width: 900px) {
+  
+  /* Seções transparentes com o fundo verde aparecendo */
+  .secao-transparente {
+    padding: 240px 20px; 
   }
 
-  .site-bg img {
-    object-position: center;
+  /* ================================================================= */
+  /* 1. TARJA BRANCA DO HERO (Botões e Tour 360 Grandes + Tarja Alta)  */
+  /* ================================================================= */
+  .hero-footer-buttons {
+    flex-direction: row;     /* Botões lado a lado */
+    justify-content: center;
+    gap: 30px;               
+    
+    /* ALTURA DA TARJA: Bem grossa e espaçada */
+    padding: 80px 20px;      
   }
 
-  .logo-doctor-pao { width: 66px; height: 66px; }
-
-  .menu-toggle { display: flex; }
-
-  .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 78%;
-    max-width: 310px;
-    height: 100svh;
-    background: #2d3d26;
+  /* Botões grandes e idênticos em tamanho */
+  .btn-main-action, 
+  .tour-virtual-banner {
+    max-width: 380px;        
+    height: 55px;            
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: right .35s ease;
-    z-index: 90;
   }
 
-  .nav-menu.open { right: 0; }
 
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 28px;
-    text-align: center;
-  }
-
-  .nav-menu a { font-size: 12px; }
-
-  .hero-content {
-    padding: 70px 0 80px;
-  }
-
-  .eyebrow {
-    font-size: 8px;
-    letter-spacing: 2px;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.8rem, 12vw, 4.2rem);
-    letter-spacing: -1px;
-  }
-
-  .hero-subtitle {
-    font-size: 11px;
-    margin-top: 18px;
-  }
-
-  .hero-actions {
-    width: calc(100% + 44px);
-    margin-left: -22px;
-    padding: 22px;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn {
-    width: 100%;
-    min-width: 0;
-    padding: 15px 18px;
-  }
-
-  .intro-section,
-  .story-section,
-  .social-section,
-  .specialties-header {
-    padding: 78px 22px;
-  }
-
-  .specialties-header { text-align: left; }
-
-  .section-label { margin-bottom: 26px; }
-
-  .intro-copy,
-  .story-layout,
-  .social-section {
-    display: block;
-  }
-
-  .intro-copy p,
-  .story-layout p {
-    margin-top: 25px;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .photo-strip {
-    padding: 35px 22px 45px;
+  /* ================================================================= */
+  /* 2. TARJA BRANCA DAS TRÊS FOTOS (Preparo Artesanal, Orgânica...)  */
+  /* ================================================================= */
+  .tarja-branca-container {
+    /* ALTURA DA TARJA: Super expandida em cima e embaixo */
+    padding: 100px 0 120px 0;         
   }
 
   .diferenciais-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    max-width: 1100px;       /* Alarga a grade no monitor */
+    gap: 30px;               
+    padding: 0 20px;         
   }
 
-  .diferencial-card img {
-    aspect-ratio: 1.35 / 1;
+  /* TEXTO MAIOR: Mantido o tamanho da primeira versão */
+  .diferencial-card span {
+    font-size: 0.95rem;      
+    margin-top: 15px;
   }
 
-  .social-section h2 {
-    font-size: 2.8rem;
+  /* Linha divisória ajustada para a nova altura */
+  .diferenciais-grid::after {
+    width: 40%;
+    bottom: -50px;           
   }
 
-  .social-links {
-    margin-top: 35px;
+
+  /* ================================================================= */
+  /* 3. TARJA BRANCA DAS REDES SOCIAIS (Título e Ícones Grandes + Alta)*/
+  /* ================================================================= */
+  .redes-sociais-section {
+    /* ALTURA DA TARJA: Bloco branco massivo e imponente */
+    padding: 120px 20px;      
   }
 
-  .specialties-header {
-    padding-bottom: 35px;
+  /* TÍTULO MAIOR: Mantido bem grande para destacar no PC */
+  .redes-sociais-section h2 {
+    font-size: 2.6rem;       
+    margin-bottom: 45px;     
   }
 
-  .gallery-section {
-    padding: 0 22px 65px;
+  .icones-redes-container {
+    gap: 35px;               
+  }
+
+  /* ÍCONES GRANDES: Círculos robustos de 75px com símbolos destacados */
+  .btn-rede-circular {
+    width: 75px;             
+    height: 75px;
+    font-size: 2.2rem;         
+  }
+  
+  .btn-rede-circular:hover {
+    transform: scale(1.1);   /* Efeito sutil ao passar o mouse */
+    background-color: var(--verde-musgo);
+  }
+
+  .redes-sociais-section::after {
+    bottom: -50px;           
+  }
+
+
+  /* ================================================================= */
+  /* 4. TARJA BRANCA DA GRADE DE FOTOS E BOTÃO "VER MAIS" (Proporcional)*/
+  /* ================================================================= */
+  .secao-transparente#especialidades + .tarja-branca-container {
+    /* ALTURA DA TARJA: Muito fundo branco abaixo do botão para equilibrar com o topo */
+    padding: 100px 0 140px 0;
   }
 
   .galeria-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(4, 1fr); /* 4 fotos por linha no PC */
+    max-width: 1100px;       /* Alinhado perfeitamente com a grade de cima */
+    gap: 20px;               
+    padding: 0 20px;
   }
 
-  .footer-container {
-    grid-template-columns: 1fr;
-    gap: 55px;
-    margin-bottom: 55px;
+  .container-botao-galeria {
+    margin-top: 55px;        /* Espaço generoso entre as fotos e o botão */
   }
 
-  .footer-block h3 { font-size: 34px; }
+  /* BOTÃO MAIOR: Deixado robusto para o desktop */
+  .botao-ver-mais {
+    max-width: 320px;        
+    padding: 16px 40px;
+    font-size: 0.95rem;
+  }
 
-  .footer-bottom {
+
+  /* ================================================================= */
+  /* Configurações estruturais do Menu (Mantidas como estavam)         */
+  /* ================================================================= */
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav-menu {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    background: none;
+    backdrop-filter: none;
     display: block;
-    line-height: 1.8;
   }
 
-  .assinatura-desenvolvedor { margin-top: 8px; }
+  .nav-menu ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-  .whatsapp-flutuante {
-    width: 50px;
-    height: 50px;
-    right: 17px;
-    bottom: 17px;
-    font-size: 25px;
+  .nav-menu ul li { margin: 0; }
+
+  .nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: var(--fonte-corpo);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 }
 
+/* --- ASSINATURA DO DESENVOLVEDOR --- */
+.assinatura-desenvolvedor {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.assinatura-desenvolvedor a {
+  color: var(--texto-claro);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.assinatura-desenvolvedor:hover {
+  opacity: 1;
+}
+
+.assinatura-desenvolvedor a:hover {
+  color: var(--verde-whatsapp);
+  border-bottom-color: var(--verde-whatsapp);
+}
+
+/* --- BOTÃO DA GALERIA DO GOOGLE FOTOS --- */
+.container-botao-galeria {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px; /* Separa o botão da grade de imagens */
+  padding: 0 15px;
+  width: 100%;
+}
+
+.botao-ver-mais {
+  background-color: var(--marrom-artesanal); /* Usa o marrom da identidade visual */
+  color: #ffffff;
+  font-family: var(--fonte-corpo);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 14px 36px;
+  border-radius: 30px; /* Estilo pílula para combinar com o botão principal do hero */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  text-align: center;
+  width: 100%;
+  max-width: 280px; /* Fica compacto no celular e centralizado no PC */
+}
+
+/* Efeito quando clica no celular ou passa o mouse */
+.botao-ver-mais:active,
+.botao-ver-mais:hover {
+  background-color: var(--verde-musgo); /* Vira o verde da marca ao interagir */
+  transform: scale(0.96);
+}
+
 @media (max-width: 899px) {
-  .site-bg, .site-bg img {
-    height: 100svh !important;
+  .hero-bg, .hero-bg img {
+    height: 100svh !important; /* Trava o fundo no tamanho exato da tela do celular */
     width: 100% !important;
     object-fit: cover !important;
     position: fixed !important;
     top: 0;
     left: 0;
-    transform: none !important;
+    transform: none !important; /* Mata o tranco do translate3d */
   }
 }

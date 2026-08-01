@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta name="google-site-verification" content="CfCyp07Pr7KXYK3epTo3gyCwoFNMIzd_FLEe3VVzhFA">
+  <meta name="google-site-verification" content="CfCyp07Pr7KXYK3epTo3gyCwoFNMIzd_FLEe3VVzhFA" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Doctor Pão - Padaria Artesanal</title>
-  <meta name="description" content="Padaria artesanal especializada em pães de fermentação natural em Mogi das Cruzes.">
 
+  <meta name="description" content="Padaria artesanal especializada em pães de fermentação natural in Mogi das Cruzes.">
+
+  <!-- TAGS DE PREVIEW DO WHATSAPP (OPEN GRAPH) CORRIGIDAS -->
   <meta property="og:title" content="Doctor Pão">
-  <meta property="og:description" content="Pães artesanais produzidos com fermentação natural.">
+  <meta property="og:description" content="Pães artesanais produtos com fermentação natural.">
   <meta property="og:url" content="https://nexths.github.io/doctor-pao/">
   <meta property="og:image" content="https://nexths.github.io/doctor-pao/assets/preview.jpg">
   <meta property="og:type" content="website">
 
   <link rel="preload" as="image" href="./assets/hero.webp">
-
+  
+  <!-- Font Awesome para os ícones redondos das redes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  
+  <!-- Google Fonts: Playfair para títulos naturais e Montserrat para o corpo -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <div class="site-bg" aria-hidden="true">
-    <img src="./assets/hero.webp" alt="" fetchpriority="high" decoding="async">
-  </div>
+  <div class="hero-bg">
+  <img
+    src="./assets/hero.webp"
+    alt=""
+    fetchpriority="high"
+    decoding="async"
+    aria-hidden="true">
+ </div>
 
-  <a href="https://wa.me/5511996061241?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20saber%20mais%20sobre%20os%20pães."
-     class="whatsapp-flutuante" target="_blank" title="Fale Conosco no WhatsApp" aria-label="WhatsApp">
+  <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+  <a href="https://wa.me/5511996061241?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20ou%20saber%20mais%20sobre%20os%20pães." 
+     class="whatsapp-flutuante" 
+     target="_blank" 
+     title="Fale Conosco no WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <header class="hero" id="inicio">
-    <div class="hero-top">
-      <a href="#inicio" class="brand-mark" aria-label="Doctor Pão - início">
-        <img src="./assets/logo.webp" alt="Logo Doctor Pão" class="logo-doctor-pao" width="120" height="120">
-      </a>
-
+  <!-- TOPO / HERO -->
+  <header class="hero-section" id="inicio">
+    <div class="hero-header">
+      <img
+    src="./assets/logo.webp"
+    alt="Logo Doctor Pão"
+    class="logo-doctor-pao"
+    width="120"
+    height="120"
+    fetchpriority="high"
+    decoding="async">
       <button class="menu-toggle" id="btn-menu" aria-label="Abrir Menu">
-        <span></span><span></span><span></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </button>
 
       <nav class="nav-menu" id="menu-principal">
@@ -56,148 +73,131 @@
       </nav>
     </div>
 
-    <div class="hero-content">
-      <p class="eyebrow">PADARIA ARTESANAL · MOGI DAS CRUZES</p>
-      <h1><em>Padaria Artesanal</em><br><em>Cozinha com Amor</em></h1>
-      <p class="hero-subtitle">Pães artesanais, cookies e tortas.</p>
+    <div class="hero-center-content">
+      <h1>Padaria Artesanal<br>Cozinha com Amor</h1>
+      <p>Pães artesanais Cookies e Tortas</p>
     </div>
 
-    <div class="hero-actions">
-      <a href="https://wa.me/5511996061241" target="_blank" class="btn btn-light">
-        Ver cardápio e fazer pedido
-      </a>
-      <a href="./tour-doctor-pao/" class="btn btn-solid" target="_blank">
-        Explore nosso espaço em 360°
+    <div class="hero-footer-buttons">
+      <a href="https://wa.me/5511996061241" target="_blank" class="btn-main-action">Ver Cardápio e Fazer Pedido</a>
+      
+      <!-- Banner do Tour Virtual Simplificado -->
+      <a href="./tour-doctor-pao/" class="tour-virtual-banner" target="_blank">
+        <div class="tour-text">
+          <p>EXPLORE NOSSO ESPAÇO EM 360°</p>
+        </div>
       </a>
     </div>
   </header>
 
-  <main>
-
-    <section class="intro-section" id="diferenciais">
-      <div class="section-label">01 — O que fazemos</div>
-      <div class="intro-copy">
-        <h2><em>Tempo, cuidado</em><br><em>e sabor de verdade.</em></h2>
-        <p>
-          Produzido com farinha 100% orgânica e fermentação natural, nosso pão possui
-          baixo índice glicêmico e não gera picos de açúcar no sangue. A longa maturação
-          quebra as proteínas do glúten e altera lactobacilos que produzem ácido lático,
-          melhorando a flora intestinal e garantindo uma digestão leve e saudável.
-        </p>
-      </div>
-    </section>
-
-    <section class="photo-strip">
-      <div class="diferenciais-grid">
-        <div class="diferencial-card">
-          <img src="./assets/card1.webp" alt="Preparo Artesanal" loading="lazy">
-          <span>Preparo artesanal</span>
-        </div>
-        <div class="diferencial-card">
-          <img src="./assets/card2.webp" alt="Matéria-Prima" loading="lazy">
-          <span>Matéria-prima 100% orgânica</span>
-        </div>
-        <div class="diferencial-card">
-          <img src="./assets/card3.webp" alt="Fornada Diária" loading="lazy">
-          <span>Baixo índice glicêmico</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="story-section">
-      <div class="section-label">02 — Nossa história</div>
-      <div class="story-layout">
-        <h2><em>Uma história</em><br><em>feita no tempo.</em></h2>
-        <p>
-          A Doctor Pão nasceu porque ela sofria com mal-estar ao comer pães comuns e se juntou
-          com ele para desenvolver uma opção de fermentação natural com baixo índice glicêmico e
-          farinha 100% orgânica.
-          <br><br>
-          Na hora de escolher o nome, pensaram até em "Sal e Pimenta", mas ela teve o estalo:
-          "Você é doutor, fica Doctor; eu sou da gastronomia, fica Pão." Assim surgiu a Doctor Pão.
-          Aquele que respeita o tempo. Nossa fermentação natural.
-        </p>
-      </div>
-    </section>
-
-    <section class="social-section">
-      <div>
-        <div class="section-label">03 — Fique por perto</div>
-        <h2><em>Acompanhe nossas novidades.</em></h2>
-      </div>
-
-      <div class="social-links">
-        <a href="https://www.instagram.com/doctorpao_" target="_blank" class="social-link" title="Instagram">
-          <i class="fa-brands fa-instagram"></i><span>Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/p/Doctor-P%C3%A3o-100057123653024/" target="_blank" class="social-link" title="Facebook">
-          <i class="fa-brands fa-facebook-f"></i><span>Facebook</span>
-        </a>
-        <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="social-link" title="Google Maps">
-          <i class="fa-solid fa-location-dot"></i><span>Localização</span>
-        </a>
-        <a href="mailto:doctorpao.contato@gmail.com" class="social-link" title="E-mail">
-          <i class="fa-regular fa-envelope"></i><span>E-mail</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="specialties-header" id="especialidades">
-      <div class="section-label">04 — Do forno</div>
-      <h2><em>Nossas especialidades.</em></h2>
-    </section>
-
-    <section class="gallery-section">
-      <div class="galeria-grid">
-        <img src="./assets/pao1.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao2.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao3.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao4.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao5.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao6.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao7.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-        <img src="./assets/pao8.webp" alt="Especialidade Doctor Pão" class="galeria-img" loading="lazy">
-      </div>
-
-      <div class="container-botao-galeria">
-        <a href="https://photos.app.goo.gl/mnbn3zeE8h8TNFSn9" target="_blank" class="botao-ver-mais">
-          Ver mais fotos
-        </a>
-      </div>
-    </section>
-
-    <div id="lightbox" class="lightbox-modal">
-      <span class="lightbox-fechar" aria-label="Fechar">×</span>
-      <img class="lightbox-conteudo" id="img-ampliada" alt="Imagem ampliada">
+  <!-- 1. DIFERENCIAIS (Texto no fundo transparente) -->
+  <section class="secao-transparente" id="diferenciais">
+    <div class="conteudo-banner-transparente">
+      <h2>NOSSOS DIFERENCIAIS</h2>
+      <p>Produzido com farinha 100% orgânica e fermentação natural, nosso pão possui baixo índice glicêmico e não gera picos de açúcar no sangue. A longa maturação quebra as proteínas do glúten e altera lactobacilos que produzem ácido lático, melhorando a flora intestinal e garantindo uma digestão leve e saudável.</p>
     </div>
+  </section>
 
-  </main>
+  <!-- 1B. TARJA BRANCA: Fotos dos Diferenciais -->
+  <section class="tarja-branca-container">
+    <div class="diferenciais-grid">
+      <div class="diferencial-card">
+        <img src="./assets/card1.webp" alt="Preparo Artesanal" loading="lazy">
+        <span>Preparo Artesanal</span>
+      </div>
+      <div class="diferencial-card">
+        <img src="./assets/card2.webp" alt="Matéria-Prima" loading="lazy">
+        <span>Matéria-Prima 100% Orgânica</span>
+      </div>
+      <div class="diferencial-card">
+        <img src="./assets/card3.webp" alt="Fornada Diária" loading="lazy">
+        <span>Baixo índice glicêmico</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- 2. NOSSA HISTÓRIA (Texto no fundo transparente) -->
+  <section class="secao-transparente">
+    <div class="conteudo-banner-transparente">
+      <h2>NOSSA HISTÓRIA</h2>
+      <p>
+        A Doctor Pão nasceu porque ela sofria com mal-estar ao comer pães comuns e se juntou com ele para desenvolver uma opção de fermentação natural com baixo índice glicêmico e farinha 100% orgânica. 
+        Na hora de escolher o nome, pensaram até em "Sal e Pimenta", mas ela teve o estalo: "Você é doutor, fica Doctor; eu sou da gastronomia, fica Pão." Assim surgiu a Doctor Pão. Aquele que respeita o tempo. Nossa fermentação natural.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. SEÇÃO REDES SOCIAIS (Tarja branca sólida) -->
+  <section class="redes-sociais-section">
+    <h2>Acompanhe Nossas Novidades</h2>
+    <div class="icones-redes-container">
+      <a href="https://www.instagram.com/doctorpao_" target="_blank" class="btn-rede-circular" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/p/Doctor-P%C3%A3o-100057123653024/" target="_blank" class="btn-rede-circular" title="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="btn-rede-circular" title="Google Maps">
+        <i class="fa-solid fa-location-dot"></i>
+      </a>
+      <a href="mailto:doctorpao.contato@gmail.com" class="btn-rede-circular" title="E-mail">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. GALERIA DE ESPECIALIDADES (Título no fundo transparente) -->
+  <section class="secao-transparente" id="especialidades">
+    <div class="conteudo-banner-transparente">
+      <h2>Nossas Especialidades</h2>
+    </div>
+  </section>
+
+  <!-- 4B. TARJA BRANCA: Grade de Imagens das Especialidades -->
+  <section class="tarja-branca-container" style="padding-bottom: 40px;">
+    <div class="galeria-grid">
+      <img src="./assets/pao1.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao2.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao3.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao4.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao5.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao6.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao7.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+      <img src="./assets/pao8.webp" alt="Foto Premium" class="galeria-img" loading="lazy">
+    </div>
+    <!-- NOVO BOTÃO CENTRALIZADO PARA O GOOGLE FOTOS -->
+    <div class="container-botao-galeria">
+      <a href="https://photos.app.goo.gl/mnbn3zeE8h8TNFSn9" target="_blank" class="botao-ver-mais">
+        Ver mais fotos
+      </a>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="lightbox-fechar">×</span>
+    <img class="lightbox-conteudo" id="img-ampliada" alt="Imagem Ampliada">
+  </div>
+
+  <!-- RODAPÉ -->
   <footer class="site-footer" id="contato">
     <div class="footer-container">
       <div class="footer-block">
-        <span class="footer-kicker">VISITE</span>
-        <h3>Onde estamos</h3>
+        <h3>ONDE ESTAMOS</h3>
         <p>Av. Pedro Romero, 111 - loja 01</p>
         <p>Vila Suissa, Mogi das Cruzes - SP, 08810-370</p>
-        <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="btn-maps">Como chegar →</a>
+        <a href="https://maps.app.goo.gl/bmfRZu3H71ipfEy96" target="_blank" class="btn-maps">Como Chegar →</a>
       </div>
-
       <div class="footer-block">
-        <span class="footer-kicker">FALE CONOSCO</span>
-        <h3>Contato</h3>
+        <h3>CONTATO</h3>
         <p>WhatsApp: 11 99606-1241</p>
         <p>E-mail: doctorpao.contato@gmail.com</p>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© 2026 Doctor Pão. Todos os direitos reservados.</p>
       <p class="assinatura-desenvolvedor">
-        Desenvolvido por
-        <a href="https://wa.me/5511999814081?text=Olá,%20Henrique!%20Vi%20o%20site%20da%20Doctor%20Pão%20e%20gostaria de um orçamento." target="_blank">
-          Henrique Silva Design
-        </a>
+        Desenvolvido por <a href="https://wa.me/5511999814081?text=Olá,%20Henrique!%20Vi%20o%20site%20da%20Doctor%20Pão%20e%20gostaria de%20um%20orçamento." target="_blank">Henrique silva Design</a>
       </p>
     </div>
   </footer>
