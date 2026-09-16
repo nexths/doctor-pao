@@ -670,3 +670,13 @@ main {
     font-size: 25px;
   }
 }
+/* Garante fundo sólido na galeria e no rodapé para tampar qualquer vão */
+.tarja-branca-container {
+  background: var(--paper) !important;
+}
+
+.site-footer {
+  background: #211f1b !important;
+  position: relative;
+  z-index: 10;
+}
