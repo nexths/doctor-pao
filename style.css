@@ -704,3 +704,9 @@ main {
     left: 0;
     transform: none !important;
   }
+
+  @media (min-width: 900px) {
+  .hero-bg img {
+    content: url('./assets/hero2.png');
+  }
+}
