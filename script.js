@@ -1,0 +1,117 @@
+// ==========================================
+// 1. CONTROLE DO MENU HAMBÚRGUER (MOBILE)
+// ==========================================
+const btnMenu = document.getElementById('btn-menu');
+const menuPrincipal = document.getElementById('menu-principal');
+
+if (btnMenu && menuPrincipal) {
+  btnMenu.addEventListener('click', () => {
+    menuPrincipal.classList.toggle('open');
+  });
+
+  const linksMenu = document.querySelectorAll('.nav-menu a');
+  linksMenu.forEach(link => {
+    link.addEventListener('click', () => menuPrincipal.classList.remove('open'));
+  });
+
+  // Fechar menu ao clicar fora dele
+  document.addEventListener('click', (e) => {
+    if (!menuPrincipal.contains(e.target) && !btnMenu.contains(e.target)) {
+      menuPrincipal.classList.remove('open');
+    }
+  });
+}
+
+// ==========================================
+// 2. CONTROLE DA GALERIA LIGHTBOX
+// ==========================================
+const imagensGaleria = document.querySelectorAll('.galeria-img');
+const lightbox = document.getElementById('lightbox');
+const imgAmpliada = document.getElementById('img-ampliada');
+const btnFechar = document.querySelector('.lightbox-fechar');
+
+if (imagensGaleria && lightbox && imgAmpliada) {
+  imagensGaleria.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  if (btnFechar) {
+    btnFechar.addEventListener('click', () => lightbox.style.display = 'none');
+  }
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  });
+}
+
+// ==========================================
+// 3. MOTOR SQUARESPACE PARA O FUNDO GLOBAL (.hero-bg)
+// ==========================================
+const bgImage = document.querySelector(".hero-bg img");
+
+function ajustarFundoEstiloSQS() {
+  if (!bgImage) return;
+
+  // 🚀 SE FOR CELULAR (Telas menores que 900px), PARA O JAVASCRIPT IMEDIATAMENTE!
+  if (window.innerWidth < 900) {
+    bgImage.style.width = "100%";
+    bgImage.style.height = "100svh"; // Usa a mesma unidade estável que o buffet usou!
+    bgImage.style.objectFit = "cover";
+    return; // Interrompe a função para não aplicar o zoom e nem dar tranco
+  }
+
+  // Mede as dimensões reais da tela (Executado apenas em Computadores)
+  const larguraTela = window.innerWidth;
+  const alturaTela = window.innerHeight;
+  
+  // Obtém a proporção original da foto
+  const proporcaoImagem = bgImage.naturalWidth / bgImage.naturalHeight;
+
+  // Criamos uma margem de segurança de 60px para a imagem "vazar" de forma invisível
+  // para fora da tela, cobrindo as faixas do puxão do navegador
+  const margemSeguranca = 60; 
+  
+  let novaLargura = larguraTela + margemSeguranca;
+  let novaAltura = novaLargura / proporcaoImagem;
+
+  // Aplica o algoritmo de cover considerando a folga de segurança
+  if (novaAltura < (alturaTela + margemSeguranca)) {
+    novaAltura = alturaTela + margemSeguranca;
+    novaLargura = novaAltura * proporcaoImagem;
+  }
+
+  // Injeta os valores finais com segurança
+  bgImage.style.width = Math.ceil(novaLargura) + "px";
+  bgImage.style.height = Math.ceil(novaAltura) + "px";
+}
+
+// Executa assim que a imagem estiver totalmente carregada na memória
+if (bgImage) {
+  if (bgImage.complete) {
+    ajustarFundoEstiloSQS();
+  } else {
+    bgImage.addEventListener("load", ajustarFundoEstiloSQS);
+  }
+}
+
+// Escuta quando o usuário rotaciona o celular (único momento onde a largura realmente muda drasticamente)
+window.addEventListener("orientationchange", () => {
+  setTimeout(ajustarFundoEstiloSQS, 200);
+});
+
+// Trata o resize no computador de forma inteligente para não quebrar a performance
+let resizeTimer;
+let ultimaLarguraConhecida = window.innerWidth;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    // Só recalcula se a largura horizontal mudar (evita o "pulo" disparado pela variação de altura vertical no mobile)
+    if (window.innerWidth !== ultimaLarguraConhecida) {
+      ultimaLarguraConhecida = window.innerWidth;
+      ajustarFundoEstiloSQS();
+    }
+  }, 150);
+});
