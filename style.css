@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  background: var(--green);
+  background:  #2b221b;
   color: var(--ink);
   font-family: var(--body);
   overflow-x: hidden;
