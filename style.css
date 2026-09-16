@@ -27,7 +27,9 @@ body {
 
 a { color: inherit; }
 
-/* FUNDO GLOBAL COM PARALLAX FIXO */
+/* ==========================================
+   1. FUNDO GLOBAL COM PARALLAX
+   ========================================== */
 .hero-bg {
   position: fixed;
   inset: 0;
@@ -56,6 +58,9 @@ a { color: inherit; }
   transition: none !important; 
 }
 
+/* ==========================================
+   2. TOPO / HERO
+   ========================================== */
 .hero-section {
   min-height: 100svh;
   padding: 24px 5vw 0;
@@ -158,7 +163,7 @@ a { color: inherit; }
   font-weight: 400;
 }
 
-/* TARJA DO HERO BEM GRANDONA E ENCORPADA NO DESKTOP */
+/* Tarja do Hero */
 .hero-actions {
   width: calc(100% + 10vw);
   margin-left: -5vw;
@@ -216,7 +221,9 @@ main {
   z-index: 3;
 }
 
-/* SEÇÕES TRANSPARENTES */
+/* ==========================================
+   3. SEÇÕES TRANSPARENTES
+   ========================================== */
 .secao-transparente {
   background: transparent;
   width: 100%;
@@ -261,9 +268,11 @@ main {
   text-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
 
-/* TARJAS BRANCAS DE FOTOS */
+/* ==========================================
+   4. TARJAS BRANCAS DE FOTOS
+   ========================================== */
 .tarja-branca-container {
-  background: var(--paper);
+  background: var(--paper) !important;
   padding: 110px 6vw;
   position: relative;
   z-index: 5;
@@ -305,7 +314,9 @@ main {
   text-align: center;
 }
 
-/* SEÇÃO REDES SOCIAIS */
+/* ==========================================
+   5. SEÇÃO REDES SOCIAIS E GALERIA
+   ========================================== */
 .social-section {
   background: var(--green);
   color: #f8f5ed;
@@ -361,7 +372,6 @@ main {
 .social-link:hover { opacity: 0.75; }
 .social-link i { width: 18px; font-size: 15px; }
 
-/* GALERIA DE ESPECIALIDADES */
 .galeria-grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -406,6 +416,9 @@ main {
 
 .botao-ver-mais:hover { opacity: 0.65; }
 
+/* ==========================================
+   6. LIGHTBOX E RODAPÉ
+   ========================================== */
 .lightbox-modal {
   display: none;
   position: fixed;
@@ -435,11 +448,11 @@ main {
 }
 
 .site-footer {
-  background: #211f1b;
-  color: #eee9df;
+  background: #211f1b !important;
   padding: 110px 6vw 35px;
   position: relative;
-  z-index: 5;
+  z-index: 10;
+  color: #eee9df;
 }
 
 .footer-container {
@@ -517,28 +530,39 @@ main {
   z-index: 999;
 }
 
-/* RESPONSIVIDADE DESKTOP: Garante a tarja grandona e imponente */
+/* ==========================================
+   7. RESPONSIVIDADE DESKTOP
+   ========================================== */
 @media (min-width: 900px) {
   .hero-actions {
-    padding: 85px 5vw; 
+    padding: 85px 5vw; /* Tarja imponente e robusta no PC */
   }
 }
 
-/* RESPONSIVIDADE MOBILE */
+/* ==========================================
+   8. RESPONSIVIDADE MOBILE
+   ========================================== */
 @media (max-width: 899px) {
   .hero-section {
     min-height: 100svh;
     padding: 18px 22px 0;
   }
 
-  .hero-bg, .hero-bg img {
-    height: 100svh !important;
+  .hero-bg {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
+    height: 100% !important;
+  }
+
+  .hero-bg img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover !important;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    transform: none !important;
   }
 
   .logo-doctor-pao { width: 66px; height: 66px; }
@@ -669,14 +693,4 @@ main {
     bottom: 17px;
     font-size: 25px;
   }
-}
-/* Garante fundo sólido na galeria e no rodapé para tampar qualquer vão */
-.tarja-branca-container {
-  background: var(--paper) !important;
-}
-
-.site-footer {
-  background: #211f1b !important;
-  position: relative;
-  z-index: 10;
 }
