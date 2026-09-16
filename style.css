@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  background: var(--green);
+  background: transparent; /* Deixa transparente para o parallax brilhar nas seções */
   color: var(--ink);
   font-family: var(--body);
   overflow-x: hidden;
@@ -28,7 +28,7 @@ body {
 a { color: inherit; }
 
 /* ==========================================
-   1. FUNDO GLOBAL COM PARALLAX
+   1. FUNDO GLOBAL COM PARALLAX (Restaurado)
    ========================================== */
 .hero-bg {
   position: fixed;
@@ -163,7 +163,7 @@ a { color: inherit; }
   font-weight: 400;
 }
 
-/* Tarja do Hero */
+/* Tarja do Hero imponente no desktop */
 .hero-actions {
   width: calc(100% + 10vw);
   margin-left: -5vw;
@@ -222,7 +222,7 @@ main {
 }
 
 /* ==========================================
-   3. SEÇÕES TRANSPARENTES
+   3. SEÇÕES TRANSPARENTES (Revelam o Parallax)
    ========================================== */
 .secao-transparente {
   background: transparent;
@@ -535,7 +535,7 @@ main {
    ========================================== */
 @media (min-width: 900px) {
   .hero-actions {
-    padding: 85px 5vw; /* Tarja imponente e robusta no PC */
+    padding: 85px 5vw; 
   }
 }
 
@@ -548,21 +548,10 @@ main {
     padding: 18px 22px 0;
   }
 
+  /* Mantém o fundo fixo certinho no mobile sem vazar para cima */
   .hero-bg {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  .hero-bg img {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
+    position: fixed !important;
+    inset: 0 !important;
   }
 
   .logo-doctor-pao { width: 66px; height: 66px; }
